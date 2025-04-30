@@ -1,4 +1,12 @@
-"scripts": {
-  "test": "jest",
-  "test:videogame-registration-module": "jest --config=videogame-registration-module/test/jest-e2e.json"
+{
+  "name": "prueba-infraestructura",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "jest",
+    "test:videogame-registration-module": "jest --config=videogame-registration.config.js"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
 }
+
