@@ -1,0 +1,32 @@
+name: Testing
+
+on:
+  push:
+    branches:
+      - main
+      - videogame-registration-module
+  pull_request:
+    branches:
+      - main
+      - videogame-registration-module
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+      - name: Install dependencies
+        run: npm install
+      - name: Run unit tests
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            npm run test:main  
+          elif [ "${{ github.ref }}" == "refs/heads/videogame-registration-module" ]; then
+            npm run test:videogame-registration-module  
+          else
+            npm run test  # Tests generales para otras ramas
+          fi
