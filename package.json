@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "test": "jest",
+    "test:main": "echo \"No tests defined for main branch\"",
     "test:videogame-registration-module": "jest --config=videogame-registration.config.js"
   },
   "devDependencies": {
