@@ -23,10 +23,12 @@ jobs:
         run: npm install
       - name: Run unit tests
         run: |
-          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
-            npm run test:main  
-          elif [ "${{ github.ref }}" == "refs/heads/videogame-registration-module" ]; then
-            npm run test:videogame-registration-module  
-          else
-            npm run test  # Tests generales para otras ramas
-          fi
+              BRANCH_NAME="${GITHUB_REF##*/}"
+              echo "Branch actual: $BRANCH_NAME"
+              if [ "$BRANCH_NAME" = "main" ]; then
+                npm run test:main  
+              elif [ "$BRANCH_NAME" = "videogame-registration-module" ]; then
+                npm run test:videogame-registration-module  
+              else
+                npm run test
+              fi
