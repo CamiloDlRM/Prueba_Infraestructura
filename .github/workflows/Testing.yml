@@ -25,7 +25,7 @@ jobs:
         run: |
           if [ "${{ github.ref }}" == "refs/heads/main" ]; then
             npm run test:main  
-          elif [ "${{ github.ref }}" == "refs/heads/videogame-registration-module" ]; then
+          elif [ "${{ github.ref }}" == "refs/heads/videogame-registration-module/test/jest-e2e.json" ]; then
             npm run test:videogame-registration-module  
           else
             npm run test  # Tests generales para otras ramas
