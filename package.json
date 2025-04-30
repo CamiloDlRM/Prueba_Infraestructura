@@ -1,0 +1,4 @@
+"scripts": {
+  "test": "jest",
+  "test:videogame-registration-module": "jest --config=videogame-registration-module/test/jest-e2e.json"
+}
