@@ -4,7 +4,7 @@
   "scripts": {
     "test": "jest",
     "test:main": "echo \"No tests defined for main branch\"",
-    "test:videogame-registration-module": "jest --config=videogame-registration.config.js"
+    "test:videogame-registration-module": "jest --config=test/jest-e2e.json"
   },
   "devDependencies": {
     "jest": "^29.0.0"
