@@ -1,0 +1,20 @@
+{
+    "name": "Node.js",
+    "dockerFile": "Dockerfile",
+    "context": "..",
+    "appPort": [3000],
+    "customizations": {
+      "vscode": {
+        "extensions": [                        // Extensiones de VS Code
+          "esbenp.prettier-vscode",
+          "dbaeumer.vscode-eslint",
+          "ms-azuretools.vscode-docker"
+        ]
+      }
+    },
+    "mounts": [
+        "source=${localWorkspaceFolder},target=/app/repository_code,type=bind,consistency=cached" // Montar el directorio de trabajo
+    ],
+    "postCreateCommand": "npm install",
+    "remoteUser": "node"
+}
