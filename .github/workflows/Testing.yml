@@ -1,4 +1,4 @@
-name: Testing
+name: Run Unit Tests
 
 on:
   push:
@@ -13,22 +13,29 @@ on:
 jobs:
   test:
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      # Checkout del código
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Configuración de Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: '16' # Cambia según la versión que usas en tu proyecto
+
+      # Instalar dependencias
       - name: Install dependencies
         run: npm install
-      - name: Run unit tests
+
+      # Ejecutar pruebas según la rama
+      - name: Run tests
         run: |
-              BRANCH_NAME="${GITHUB_REF##*/}"
-              echo "Branch actual: $BRANCH_NAME"
-              if [ "$BRANCH_NAME" = "main" ]; then
-                npm run test:main  
-              elif [ "$BRANCH_NAME" = "videogame-registration-module" ]; then
-                npm run test:videogame-registration-module  
-              else
-                npm run test
-              fi
+          if [[ "${{ github.ref_name }}" == "main" ]]; then
+            npm run test:main
+          elif [[ "${{ github.ref_name }}" == "videogame-registration-module" ]]; then
+            npm run test:videogame-registration-module
+          else
+            npm run test
+          fi
