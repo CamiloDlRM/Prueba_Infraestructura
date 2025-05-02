@@ -4,13 +4,23 @@
   "scripts": {
     "test": "jest",
     "test:main": "echo \"No tests defined for main branch\"",
-    "test:videogame-registration-module": "jest --config=videogame-registration.config.js"
+    "test:videogame-registration-module": "jest --config=test/jest-e2e.json"
   },
   "devDependencies": {
     "jest": "^29.0.0",
     "ts-jest": "^29.1.1",
     "typescript": "^5.0.0",
-    "@types/jest": "^29.5.0"
-  }
+    "@types/jest": "^29.5.0",
+    "@nestjs/testing": "^11.0.0",
+    "supertest": "^6.3.3",
+    "@types/supertest": "^2.0.12"
+  },
+  "dependencies": {
+  "@nestjs/common": "^11.0.0",
+  "@nestjs/core": "^11.0.0",
+  "@nestjs/typeorm": "^11.0.0",
+  "@nestjs/mapped-types": "^2.0.4",
+  "@nestjs/platform-express": "^11.0.0",
+  "pg": "^8.11.3"
 }
-
+}
