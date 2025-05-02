@@ -29,21 +29,17 @@ jobs:
           --health-retries 5
 
     steps:
-      
       - name: Checkout code
         uses: actions/checkout@v3
 
-      
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16' 
+          node-version: '16'
 
-      
       - name: Install dependencies
         run: npm install
 
-      
       - name: Run tests
         env:
           DB_HOST: localhost
@@ -59,3 +55,20 @@ jobs:
           else
             npm run test
           fi
+
+  docker-image:
+    runs-on: ubuntu-latest
+    needs: test  
+    if: github.ref == 'refs/heads/main' && success()
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Log in to Docker Hub
+        run: echo "${{ secrets.DOCKERHUB_TOKEN }}" | docker login -u "${{ secrets.DOCKERHUB_USERNAME }}" --password-stdin
+
+      - name: Build the Docker image
+        run: docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/my-image-name:latest .
+
+      - name: Push the image to Docker Hub
+        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/my-image-name:latest
